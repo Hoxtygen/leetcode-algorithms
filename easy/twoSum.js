@@ -31,3 +31,17 @@ console.log(twoSum([1, 3, 10, 11, 14], 24));
 console.log(twoSum([2, 7, 11, 15], 9));
 console.log(twoSum([2, 7, 11, 15], 22));
 console.log(twoSum([2, 7, 11, 15], 90));
+
+// solution variation
+function twoSum(nums, target) {
+  const cache = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    const currentValue = nums[i];
+    if (cache.has(target - currentValue)) {
+      return [i, cache.get(target - currentValue)];
+    } else {
+      cache.set(currentValue, i);
+    }
+  }
+  return [];
+}
