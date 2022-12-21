@@ -32,31 +32,46 @@ Constraints:
  * @param {number[]} nums
  * @return {number}
  */
+
+// time = O(n)
+// space = O(n)
+
 function arrToObject(nums) {
-	const cache = new Map();
-	for (let i = 0; i < nums.length; i++) {
-	  if (cache.has(nums[i])) {
-		cache.set(nums[i], cache.get(nums[i]) + 1);
-	  } else {
-		cache.set(nums[i], 1);
-	  }
-	}
-	return cache;
+  const cache = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    if (cache.has(nums[i])) {
+      cache.set(nums[i], cache.get(nums[i]) + 1);
+    } else {
+      cache.set(nums[i], 1);
+    }
   }
-  
-  function single(obj) {
-	for (const val of obj.keys()) {
-	  if (obj.get(val) === 1) {
-		return val;
-	  }
-	}
+  return cache;
+}
+
+function single(obj) {
+  for (const val of obj.keys()) {
+    if (obj.get(val) === 1) {
+      return val;
+    }
   }
-  
-  var singleNumber = function (nums) {
-	const obj = arrToObject(nums);
-	const result = single(obj);
-	return result;
-  };
-  console.log(singleNumber([4, 1, 2, 1, 2]));
-  console.log(singleNumber([2, 2, 1]));
-  
+}
+
+var singleNumber = function (nums) {
+  const obj = arrToObject(nums);
+  const result = single(obj);
+  return result;
+};
+
+// time = O(n)
+// space = O(1)
+
+function singleNumber(nums) {
+  let singleValue = nums[0];
+  for (let i = 1; i < nums.length; i++) {
+    singleValue = singleValue ^ nums[i];
+  }
+  return singleValue;
+}
+
+console.log(singleNumber([4, 1, 2, 1, 2]));
+console.log(singleNumber([2, 2, 1]));
