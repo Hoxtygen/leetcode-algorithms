@@ -30,13 +30,25 @@ Constraints:
 
 */
 
-function isPalindrom(str) {
+// with built-in string and array methods
+function isPalindrome(str) {
   str = str.replace(/[\W_]/gi, "").toLowerCase();
   const revStr = str.split("").reverse().join("");
   return str === revStr;
 }
 
-console.log(isPalindrom("#Hello ^World' 123$%"));
-console.log(isPalindrom("A man, a plan, a canal: Panama"));
-console.log(isPalindrom("race a car"));
-console.log(isPalindrom(" "));
+
+// with loop
+function isPalindrome(str) {
+  let newStr = str.replace(/[\W_]/gi, "").toLowerCase();
+  let reverseString = "";
+  for (let i = newStr.length - 1; i >= 0; i--) {
+    reverseString += newStr[i];
+  }
+  return reverseString === newStr;
+}
+
+console.log(isPalindrome("#Hello ^World' 123$%"));
+console.log(isPalindrome("A man, a plan, a canal: Panama"));
+console.log(isPalindrome("race a car"));
+console.log(isPalindrome(" "));
