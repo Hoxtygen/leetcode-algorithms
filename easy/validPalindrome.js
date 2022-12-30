@@ -37,7 +37,6 @@ function isPalindrome(str) {
   return str === revStr;
 }
 
-
 // with loop
 function isPalindrome(str) {
   let newStr = str.replace(/[\W_]/gi, "").toLowerCase();
@@ -48,7 +47,40 @@ function isPalindrome(str) {
   return reverseString === newStr;
 }
 
+function isAlphaNumeric(str) {
+  let code;
+  let len = str.length;
+
+  for (let i = 0; i < len; i++) {
+    code = str.charCodeAt(i);
+    if (
+      !(code > 47 && code < 58) &&
+      !(code > 64 && code < 91) &&
+      !(code > 96 && code < 123)
+    ) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function isPalindrome(str) {
+  let right = str.length - 1;
+  let left = 0;
+
+  while (left < right) {
+    if (!isAlphaNumeric(str[left])) left++;
+    else if (!isAlphaNumeric(str[right])) right--;
+    else if (str[left].toLowerCase() !== str[right].toLowerCase()) return false;
+    else {
+      left++, right--;
+    }
+  }
+  return true;
+}
+
 console.log(isPalindrome("#Hello ^World' 123$%"));
 console.log(isPalindrome("A man, a plan, a canal: Panama"));
+console.log(isPalindrome("A man, {}a plan, a canal: Panama[]()"));
 console.log(isPalindrome("race a car"));
 console.log(isPalindrome(" "));
