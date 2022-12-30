@@ -26,13 +26,13 @@ Constraints:
     -231 <= x <= 231 - 1
 
  
+Follow up: Could you solve it without converting the integer to a string?
 
 */
 
 // without built-in array methods
 function isPalindrome(x) {
   if (x < 0) return false;
-  if (x === 0) return true;
   x = String(x);
   let reverseX = "";
   for (let i = x.length - 1; i >= 0; i--) {
@@ -41,19 +41,25 @@ function isPalindrome(x) {
   return parseInt(reverseX) === x;
 }
 
-// with built-in functions
+// with built-in array methods
 function isPalindrome(x) {
-	if (x < 0) return false;
-	if (x === 0) return true;
-	let newX = String(x).split("").reverse().join("");
-	return parseInt(newX) === x;
+  if (x < 0) return false;
+  let newX = String(x).split("").reverse().join("");
+  return parseInt(newX) === x;
+}
+
+// Without converting the integer to string
+function isPalindrome(x) {
+  if (x < 0) return false;
+  let reverseX = 0;
+  let num = x;
+  while (x > 0) {
+    reverseX = reverseX * 10 + (x % 10);
+    x = Math.floor(x / 10);
   }
+  return reverseX === num;
+}
 
 console.log(isPalindrome(124));
 console.log(isPalindrome(121));
-console.log(isPalindrome(000));
 console.log(isPalindrome(10));
-console.log(isPalindrome(001000));
-
-
-
