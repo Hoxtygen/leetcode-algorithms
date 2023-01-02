@@ -53,4 +53,3 @@ var preorderTraversal = function (root) {
   return result;
 };
 
-// https://en.wikipedia.org/wiki/Tree_traversal
