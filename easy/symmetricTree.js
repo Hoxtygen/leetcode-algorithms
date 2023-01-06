@@ -29,29 +29,45 @@ Follow up: Could you solve it both recursively and iteratively?
  * @return {boolean}
  */
 
-
 // Iterative approach
- function isSymmetric(root) {
-	if (!root) return true;
-	const stack1 = [],
-	  stack2 = [];
-	let curr1 = root,
-	  curr2 = root;
-	while ((curr1 && curr2) || (stack1.length && stack2.length)) {
-	  while (curr1) {
-		stack1.push(curr1);
-		curr1 = curr1.left;
-	  }
-	  while (curr2) {
-		stack2.push(curr2);
-		curr2 = curr2.right;
-	  }
-	  (curr1 = stack1.pop()), (curr2 = stack2.pop());
-	  if (curr1.val !== curr2.val || stack1.length !== stack2.length) {
-		return false;
-	  }
-	  (curr1 = curr1.right), (curr2 = curr2.left);
-	}
-	return true;
-  };
-  
+function isSymmetric(root) {
+  if (!root) return true;
+  const stack1 = [],
+    stack2 = [];
+  let curr1 = root,
+    curr2 = root;
+  while ((curr1 && curr2) || (stack1.length && stack2.length)) {
+    while (curr1) {
+      stack1.push(curr1);
+      curr1 = curr1.left;
+    }
+    while (curr2) {
+      stack2.push(curr2);
+      curr2 = curr2.right;
+    }
+    (curr1 = stack1.pop()), (curr2 = stack2.pop());
+    if (curr1.val !== curr2.val || stack1.length !== stack2.length) {
+      return false;
+    }
+    (curr1 = curr1.right), (curr2 = curr2.left);
+  }
+  return true;
+}
+
+// recursive approach
+function isMirror(node1, node2) {
+  if (node1 === null && node2 === null) {
+    return true;
+  }
+  if (!node1 || !node2) {
+    return false;
+  }
+  if (node1.val !== node2.val) {
+    return false;
+  }
+  return isMirror(node1.left, node2.right) && isMirror(node1.right, node2.left);
+}
+
+function isSymmetric(root) {
+  return root === null || isMirror(root.left, root.right);
+}
