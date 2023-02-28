@@ -27,25 +27,24 @@ All the words in s are separated by a single space.
  * @return {string}
  */
 
-var reverseString1 = function (s) {
-	let start = 0;
-	let end = s.length - 1;
-	while (start < end) {
-	  [s[start], s[end]] = [s[end], s[start]];
-	  start++;
-	  end--;
+function reverseWords(s) {
+	let wordArray = s.split(" ");
+	for (let i = 0; i < wordArray.length; i++) {
+	  let singleWord = wordArray[i].split("");
+	  let left = 0;
+	  let right = singleWord.length - 1;
+	  while (left < right) {
+		[singleWord[left], singleWord[right]] = [
+		  singleWord[right],
+		  singleWord[left],
+		];
+		left++;
+		right--;
+	  }
+	  wordArray[i] = singleWord.join("")
 	}
-	return s;
-  };
-  var reverseWords = function (s) {
-	const words = s.split(" ");
-	const result = [];
-	for (let i = 0; i < words.length; i++) {
-	  const rev = reverseString1(words[i].split("")).join("");
-	  result.push(rev);
-	}
-	return result.join(" ");
-  };
+	return wordArray.join(" ")
+  }  
   
   console.log(reverseWords("Let's take LeetCode contest"));
   console.log(reverseWords("God Ding"));
