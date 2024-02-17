@@ -16,6 +16,7 @@
  * @author Wasiu Idowu
  */
 
+// Method 1 ( 2 pointers technique)
 function intersection(nums1, nums2) {
   let result = [];
   let i = 0;
@@ -36,5 +37,18 @@ function intersection(nums1, nums2) {
   return result;
 }
 
+
+// Method 2
+function intersection(nums1, nums2) {
+  const nums2Set = new Set(nums2);
+  const result = new Set();
+
+  for (let i = 0; i < nums1.length; i++) {
+    if (nums2Set.has(nums1[i])) {
+      result.add(nums1[i]);
+    }
+  }
+  return [...result];
+}
 console.log(intersection([1, 2, 2, 1], [2, 2]));
 console.log(intersection([4, 9, 5], [9, 4, 9, 8, 4]));
